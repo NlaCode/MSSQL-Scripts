@@ -1,3 +1,19 @@
+-- Simple understand of blocking w/ whoisactive
+
+EXEC sp_WhoIsActive
+@find_block_leaders = 1
+--,@get_plans = 1
+--,@get_additional_info = 1
+--,@get_full_inner_text = 1
+--,@get_outer_command = 1
+,@sort_order = '[blocked_session_count] DESC'
+,@output_column_list = '[dd%][session_id][sql_text][sql_command][block%][status][open_tran_count][host_name][wait_info][login_name][tasks][tran_log%][cpu%][temp%][reads%][writes%][context%][physical%][query_plan][locks][%]'
+--,@filter_type = ''
+--,@filter = ''
+
+GO
+
+-- Using whoisactive with a tree, ignoring the sessions which are not blocked/blocking
 USE tempdb;
 SET NOCOUNT ON;
 
@@ -104,3 +120,36 @@ OPTION (MAXRECURSION 100);
 
 -- Cleanup
 IF OBJECT_ID('tempdb..##WIA') IS NOT NULL DROP TABLE ##WIA;
+
+GO
+
+-- checking a specific session if is a proc (helps identifying what step of the proc is running)
+
+DECLARE @SPID INT = 85; 
+
+SELECT 
+    r.session_id,
+    DB_NAME(t.dbid) AS 'database',
+    OBJECT_NAME(t.objectid, t.dbid) AS 'proc',
+    SUBSTRING(
+        t.[text], 
+        (r.statement_start_offset / 2) + 1, 
+        (
+            (CASE r.statement_end_offset 
+                WHEN -1 THEN DATALENGTH(t.[text]) 
+                ELSE r.statement_end_offset 
+            END - r.statement_start_offset) / 2
+        ) + 1
+    ) AS runningcommand,
+    r.status,
+    r.command,
+    r.wait_type,
+    (r.wait_time / 1000.0) AS wait_time_sec,
+    (r.total_elapsed_time / 1000.0) AS elapsed_time_sec,
+    r.logical_reads
+FROM 
+    sys.dm_exec_requests r
+CROSS APPLY 
+    sys.dm_exec_sql_text(r.sql_handle) t
+WHERE 
+    r.session_id = @SPID;
