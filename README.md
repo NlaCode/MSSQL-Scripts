@@ -8,35 +8,12 @@ Repositório de scripts T-SQL para administração e monitoramento de ambientes 
 
 ```
 MSSQL-Scripts/
+├── alwayson/     # Análise e monitoramento dos always on disponíveis
 ├── backups/      # Verificação e histórico de backups
 ├── blocking/     # Análise de bloqueios e sessões em espera
 ├── indexes/      # Análise e manutenção de índices
 └── tempdb/       # Monitoramento de espaço e uso do TempDB
 ```
-
----
-
-## 📋 Scripts Disponíveis
-
-### 🔒 Backups
-| Script | Descrição |
-|--------|-----------|
-| `Checking Backups.sql` | Verifica histórico e status dos backups de todos os databases da instância |
-
-### 🚧 Blocking
-| Script | Descrição |
-|--------|-----------|
-| `WhoIsActive - Blocking.sql` | Gera árvore de bloqueios em tempo real com sessões HEAD e dependentes, utilizando `sp_WhoIsActive` |
-
-### 📈 Indexes
-| Script | Descrição |
-|--------|-----------|
-| `Search Object All Databases.sql` | Busca procedures e funções por nome em todos os databases da instância |
-
-### 🗂️ TempDB
-| Script | Descrição |
-|--------|-----------|
-| `TempDB Usage.sql` | Analisa uso de espaço por arquivo (dados e log), exibindo tamanho, espaço usado, livre e percentual |
 
 ---
 
