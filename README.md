@@ -99,15 +99,6 @@ git push origin feature/nome-do-script
 - Evite `SELECT *` — liste sempre as colunas explicitamente
 - Nomeie os arquivos em inglês, com palavras separadas por espaço e iniciais maiúsculas
 
-**Exemplo de cabeçalho:**
-```sql
-/* ============================================================
-   Script  : TempDB Usage
-   Versão  : SQL Server 2016+
-   Objetivo: Analisa o uso de espaço dos arquivos do TempDB
-   ============================================================ */
-```
-
 ---
 
 ## 📌 Observações
