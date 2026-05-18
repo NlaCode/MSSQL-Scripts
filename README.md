@@ -12,6 +12,7 @@ MSSQL-Scripts/
 ├── backups/      # Verificação e histórico de backups
 ├── blocking/     # Análise de bloqueios e sessões em espera
 ├── indexes/      # Análise e manutenção de índices
+├── statistics/   # Análise e manutenção de estatísticas
 └── tempdb/       # Monitoramento de espaço e uso do TempDB
 ```
 
