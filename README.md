@@ -1,6 +1,6 @@
 # 🗄️ MSSQL-Scripts
 
-Repositório de scripts T-SQL para administração e monitoramento de ambientes **SQL Server 2016+**. Organizados por categoria e prontos para uso no **SSMS 22+**.
+Repositório de scripts T-SQL para administração e monitoramento de ambientes **SQL Server 2016+**. Organizados por categoria.
 
 ---
 
