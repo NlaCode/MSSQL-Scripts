@@ -20,7 +20,6 @@ MSSQL-Scripts/
 ## ⚙️ Pré-requisitos
 
 - **SQL Server 2016 Enterprise** ou superior
-- **SSMS 22.4** ou superior
 - [`sp_WhoIsActive`](http://whoisactive.com/downloads/) instalada no database `master` — necessária para os scripts da pasta `blocking`
 - Permissão de `VIEW SERVER STATE` para scripts de monitoramento
 
